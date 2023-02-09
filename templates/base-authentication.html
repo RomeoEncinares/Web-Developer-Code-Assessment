@@ -9,12 +9,23 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="container-fluid">
+        {% block register %}
+        {% endblock %}
+    
+        {% block login %}
+        {% endblock %}
+    
+        {% block home %}
+        {% endblock %}
+    
+        {% block article-view %}
+        {% endblock %}
+    
+        {% block createArticle %}
+        {% endblock %}
+    </div>
 
-    {% block register %}
-    {% endblock %}
-
-    {% block login %}
-    {% endblock %}
 
     <!-- <a href="{% url 'register_user' %}"><p>register</p></a>
     <a href="{% url 'login_user' %}"><p>register</p></a> -->
