@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from knox.models import AuthToken
@@ -46,4 +46,13 @@ def postArticle(request):
 def getArticle(request):
     articles = Article.objects.all()
     serializer = ArticleSerializer(articles, many=True)
+    return Response(serializer.data)
+
+@api_view(['PUT'])
+def updateArticle(request, pk):
+    article = get_object_or_404(Article.objects.all(), pk=pk)
+    serializer = ArticleSerializer(article, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
     return Response(serializer.data)
