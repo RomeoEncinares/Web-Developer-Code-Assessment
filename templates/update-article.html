@@ -1,0 +1,17 @@
+{% extends 'base-authentication.html' %}
+{% load static %}
+
+{% block updateArticle %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="{{article.title}}">
+          </div>
+        <div class="form-group">
+            <label for="content" readonly>Content</label>
+            <textarea class="form-control" id="content" rows="3" name="content" placeholder="{{article.content}}"></textarea>
+          </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+{% endblock %}
