@@ -63,3 +63,9 @@ def updateArticle(request, id):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def deleteArticle(request, id):
+    article = get_object_or_404(Article, id=id)
+    article.delete()
+    return Response(status=204)
