@@ -10,5 +10,5 @@ urlpatterns = [
     path('api/create-article/', postArticle, name="postArticle"),
     path('api/list-article/', getArticle, name="getArticle"),
     path('api/article/<int:id>/', getSpecificArticle, name='get-specific-article'),
-    path('api/update-article/', updateArticle, name="updateArticle"),
+    path('api/update-article/<int:id>/', updateArticle, name="updateArticle"),
 ]
