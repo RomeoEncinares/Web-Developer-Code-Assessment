@@ -20,4 +20,19 @@ def register(request):
     return render(request, 'register.html')
 
 def login(request):
+    url = "http://localhost:8000/api/login/"
+    if request.method == 'POST':
+        data = request.POST.copy()
+        if 'csrfmiddlewaretoken' in data:
+            del data['csrfmiddlewaretoken']
+        json_data = json.dumps(data.dict())
+        response = requests.post(url, json=data)
+        if response.status_code == 200:
+            print('success')
+            return redirect('home_user')
     return render(request, 'login.html')
+
+def home(request):
+    current_user = request.user
+    print(current_user)
+    return render(request, "home.html")
