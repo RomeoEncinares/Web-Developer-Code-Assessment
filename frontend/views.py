@@ -90,3 +90,11 @@ def updateArticle(request, id):
         return redirect('view_article', id=id)
 
     return render(request, "update-article.html")
+
+def deleteArticle(request, id):
+    url = f"http://localhost:8000/api/delete-article/{id}"
+    
+    if request.method == 'POST':
+        response = requests.delete(url)
+        return redirect('home_user')
+    return render(request, "delete-article.html")
