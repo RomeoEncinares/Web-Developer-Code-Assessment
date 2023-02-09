@@ -8,6 +8,7 @@ from django.contrib.auth import login
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 from rest_framework.decorators import api_view
+from .models import Article
 
 # Register API
 class RegisterAPI(generics.GenericAPIView):
@@ -38,4 +39,11 @@ def postArticle(request):
     serializer = ArticleSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
+    print(serializer.errors)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getArticle(request):
+    articles = Article.objects.all()
+    serializer = ArticleSerializer(articles, many=True)
     return Response(serializer.data)
