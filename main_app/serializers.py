@@ -24,4 +24,4 @@ class RegisterSerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('username', 'title', 'content',)
+        fields = ('id', 'username', 'title', 'content',)
