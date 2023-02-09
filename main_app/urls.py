@@ -1,5 +1,5 @@
 from knox import views as knox_views
-from .views import RegisterAPI, LoginAPI, postArticle, getArticle, updateArticle
+from .views import RegisterAPI, LoginAPI, postArticle, getArticle, updateArticle, getSpecificArticle
 from django.urls import path
 
 urlpatterns = [
@@ -9,5 +9,6 @@ urlpatterns = [
     path('api/logoutall/', knox_views.LogoutAllView.as_view(), name='logoutall'),
     path('api/create-article/', postArticle, name="postArticle"),
     path('api/list-article/', getArticle, name="getArticle"),
+    path('api/article/<int:id>/', getSpecificArticle, name='get-specific-article'),
     path('api/update-article/', updateArticle, name="updateArticle"),
 ]
