@@ -35,8 +35,15 @@ def login(request):
 
 def home(request):
     current_user = request.user
-    print(current_user)
-    return render(request, "home.html")
+    url = "http://localhost:8000/api/list-article/"
+    response = requests.get(url)
+    articles = response.json()
+
+    context = {
+        'articles': articles,
+    }
+
+    return render(request, "home.html", context)
 
 def createArticle(request):
     current_user = request.user
@@ -53,3 +60,14 @@ def createArticle(request):
             print('success')
             return redirect('home_user')
     return render(request, "create.html")
+
+def viewArticle(request, id):
+    url = f"http://localhost:8000/api/article/{id}"
+    response = requests.get(url)
+    article = response.json()
+
+    context = {
+        'article': article,
+    }
+
+    return render(request, "article-view.html", context)
