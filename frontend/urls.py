@@ -1,4 +1,4 @@
-from .views import index, register, login, home, createArticle, viewArticle
+from .views import index, register, login, home, createArticle, viewArticle, updateArticle
 from django.urls import path
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path('home/', home, name='home_user'),
     path('createArticle/', createArticle, name='create_article'),
     path('article/<int:id>/', viewArticle, name='view_article'),
+    path('update/<int:id>/', updateArticle, name='update_article'),
 ]
