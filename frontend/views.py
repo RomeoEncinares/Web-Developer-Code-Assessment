@@ -71,3 +71,22 @@ def viewArticle(request, id):
     }
 
     return render(request, "article-view.html", context)
+
+def updateArticle(request, id):
+    url = f"http://localhost:8000/api/update-article/{id}/"
+
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+
+        data = {
+            'id' : id,
+            'username' : request.user.pk,
+            'title': title,
+            'content': content,
+        } 
+        print(data)
+        response = requests.put(url, data=data)
+        return redirect('view_article', id=id)
+
+    return render(request, "update-article.html")
