@@ -9,6 +9,7 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
 from rest_framework.decorators import api_view
 from .models import Article
+from rest_framework import status
 
 # Register API
 class RegisterAPI(generics.GenericAPIView):
@@ -54,11 +55,11 @@ def getSpecificArticle(request, id):
     serializer = ArticleSerializer(article)
     return Response(serializer.data)
 
-@api_view(['PUT'])
-def updateArticle(request, pk):
-    article = get_object_or_404(Article.objects.all(), pk=pk)
+@api_view(['PUT', 'GET'])
+def updateArticle(request, id):
+    article = get_object_or_404(Article, id=id)
     serializer = ArticleSerializer(article, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
-    return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
