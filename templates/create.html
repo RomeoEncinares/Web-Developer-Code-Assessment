@@ -1,0 +1,22 @@
+{% load_static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="title">title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="content">content:</label><br>
+        <input type="text" id="content" name="content"><br>
+        <button class="btn btn-dark btn-lg btn-block" type="submit">Create</button>
+    </form>
+</body>
+
+</html>
