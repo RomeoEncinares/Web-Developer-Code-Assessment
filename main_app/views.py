@@ -48,6 +48,12 @@ def getArticle(request):
     serializer = ArticleSerializer(articles, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def getSpecificArticle(request, id):
+    article = get_object_or_404(Article, id=id)
+    serializer = ArticleSerializer(article)
+    return Response(serializer.data)
+
 @api_view(['PUT'])
 def updateArticle(request, pk):
     article = get_object_or_404(Article.objects.all(), pk=pk)
