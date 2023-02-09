@@ -1,0 +1,10 @@
+{% extends 'base-authentication.html' %}
+{% load static %}
+
+{% block deleteArticle %}
+    <form method="POST">
+        {% csrf_token %}
+        <p>Confirm delete article?</p>
+        <button class="btn btn-danger btn-lg btn-block" type="submit">Delete</button>
+    </form>
+{% endblock %}
