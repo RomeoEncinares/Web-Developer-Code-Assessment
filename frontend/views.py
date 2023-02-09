@@ -13,6 +13,7 @@ def register(request):
         if 'csrfmiddlewaretoken' in data:
             del data['csrfmiddlewaretoken']
         json_data = json.dumps(data.dict())
+        print(json_data)
         response = requests.post(url, json=data)
         if response.status_code == 200:
             print('success')
@@ -36,3 +37,19 @@ def home(request):
     current_user = request.user
     print(current_user)
     return render(request, "home.html")
+
+def createArticle(request):
+    current_user = request.user
+    url = "http://localhost:8000/api/create-article/"
+    if request.method == 'POST':
+        data = request.POST.copy()
+        if 'csrfmiddlewaretoken' in data:
+            del data['csrfmiddlewaretoken']
+        data["username"] = request.user.pk
+        json_data = json.dumps(data.dict())
+        print(json_data)
+        response = requests.post(url, json=data)
+        if response.status_code == 200:
+            print('success')
+            return redirect('home_user')
+    return render(request, "create.html")
