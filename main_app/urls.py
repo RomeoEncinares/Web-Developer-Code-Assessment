@@ -1,5 +1,5 @@
 from knox import views as knox_views
-from .views import RegisterAPI, LoginAPI, postArticle, getArticle, updateArticle, getSpecificArticle
+from .views import RegisterAPI, LoginAPI, postArticle, getArticle, updateArticle, getSpecificArticle, deleteArticle
 from django.urls import path
 
 urlpatterns = [
@@ -11,4 +11,5 @@ urlpatterns = [
     path('api/list-article/', getArticle, name="getArticle"),
     path('api/article/<int:id>/', getSpecificArticle, name='get-specific-article'),
     path('api/update-article/<int:id>/', updateArticle, name="updateArticle"),
+    path('api/delete-article/<int:id>/', deleteArticle, name="deleteArticle"),
 ]
